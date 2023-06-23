@@ -42,10 +42,9 @@ class SecurityConfig {
       .requestMatchers("/admin/**").hasRole("ADMIN")
       .anyRequest().authenticated()
     );
-
-    http.oauth2ResourceServer(oauth2 -> oauth2
-      .opaqueToken() // TODO: setup oauth2 token auto conversion
-    );
+//
+//    http.oauth2ResourceServer(oauth2 -> oauth2.jwt() // TODO: setup oauth2 token auto conversion
+//    );
 
     return http.build();
   }
