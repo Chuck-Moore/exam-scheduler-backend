@@ -1,5 +1,5 @@
 name: Prettier
-on: [pull_request, push]
+on: [push]
 jobs:
   prettify_all:
     permissions:
