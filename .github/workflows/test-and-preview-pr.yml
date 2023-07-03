@@ -4,23 +4,23 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Setup and build with Gradle
-      uses: gradle/gradle-build-action@v2
-      env:
-        CI: true
-        SPRING_PROFILES_ACTIVE: dev
-        OAUTH2_CLIENT_ID: ${{ secrets.OAUTH2_CLIENT_ID }}
-        OAUTH2_CLIENT_SECRET: ${{ secrets.OAUTH2_CLIENT_SECRET }}
-      with:
-        arguments: build --scan
-        gradle-home-cache-cleanup: true
-    - name: Comment build scan url
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        header: build-scan
-        message: 'Build Scan:' ${{ steps.gradle.outputs.build-scan-url }}'
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Setup and build with Gradle
+        uses: gradle/gradle-build-action@v2
+        env:
+          CI: true
+          SPRING_PROFILES_ACTIVE: dev
+          OAUTH2_CLIENT_ID: ${{ secrets.OAUTH2_CLIENT_ID }}
+          OAUTH2_CLIENT_SECRET: ${{ secrets.OAUTH2_CLIENT_SECRET }}
+        with:
+          arguments: build --scan
+          gradle-home-cache-cleanup: true
+      - name: Comment build scan url
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          header: build-scan
+          message: "Build Scan: ${{ steps.gradle.outputs.build-scan-url }}"
   heroku_deploy:
     needs: test
     environment:
@@ -28,15 +28,12 @@ jobs:
       url: ${{ steps.deploy.outputs.url }}
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-    - name: Deploy Heroku app
-      uses: pmbanugo/heroku-review-app-actions@v2.0.0
-      id: heroku-deploy
-      with:
-        api-key: ${{ secrets.HEROKU_API_KEY }}
-        pipeline-id: ${{ secrets.HEROKU_PIPELINE_ID }}
-        base-name: pipeline
-
-
-
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Deploy Heroku app
+        uses: pmbanugo/heroku-review-app-actions@v2.0.0
+        id: heroku-deploy
+        with:
+          api-key: ${{ secrets.HEROKU_API_KEY }}
+          pipeline-id: ${{ secrets.HEROKU_PIPELINE_ID }}
+          base-name: pipeline
