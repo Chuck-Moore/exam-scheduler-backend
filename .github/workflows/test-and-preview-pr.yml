@@ -44,4 +44,4 @@ jobs:
         with:
           api-key: ${{ secrets.HEROKU_API_KEY }}
           pipeline-id: ${{ secrets.HEROKU_PIPELINE_ID }}
-          base-name: pipeline
+          base-name: fic-exam-scheduler
