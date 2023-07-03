@@ -2,6 +2,8 @@ name: Prettier
 on: [pull_request, push]
 jobs:
   prettify_all:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
