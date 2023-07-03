@@ -15,6 +15,7 @@ jobs:
           distribution: zulu
           java-version: 17
       - name: Setup and build with Gradle
+        id: gradle
         uses: gradle/gradle-build-action@v2
         env:
           CI: true
