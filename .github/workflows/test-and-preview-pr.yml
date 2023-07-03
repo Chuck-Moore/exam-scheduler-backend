@@ -35,12 +35,12 @@ jobs:
     environment:
       name: Preview
       url: ${{ steps.deploy.outputs.url }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
       - name: Deploy Heroku app
-        uses: pmbanugo/heroku-review-app-actions@v2.0.0
+        uses: pmbanugo/heroku-review-app-actions@v2
         id: heroku-deploy
         with:
           api-key: ${{ secrets.HEROKU_API_KEY }}
