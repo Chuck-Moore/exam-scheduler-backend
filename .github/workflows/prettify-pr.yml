@@ -6,16 +6,16 @@ jobs:
       contents: write
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
-      with:
-        # Make sure the actual branch is checked out when running on pull requests
-        ref: ${{ github.head_ref }}
-        # This is important to fetch the changes to the previous commit
-        fetch-depth: 2
-    - name: Run Prettier
-      uses: creyD/prettier_action@v4.3
-      with:
-        same_commit: true
-        prettier_options: --write .
-        prettier_plugins: 'prettier-plugin-java prettier-plugin-properties'
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          # Make sure the actual branch is checked out when running on pull requests
+          ref: ${{ github.head_ref }}
+          # This is important to fetch the changes to the previous commit
+          fetch-depth: 2
+      - name: Run Prettier
+        uses: creyD/prettier_action@v4.3
+        with:
+          same_commit: true
+          prettier_options: --write .
+          prettier_plugins: "prettier-plugin-java prettier-plugin-properties"

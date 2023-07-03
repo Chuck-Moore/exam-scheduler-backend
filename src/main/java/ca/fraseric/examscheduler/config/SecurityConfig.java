@@ -19,11 +19,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableMethodSecurity
 @EnableWebMvc
 class SecurityConfig {
+
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-
-    http.oauth2ResourceServer(oauth2 -> oauth2
-      .opaqueToken(Customizer.withDefaults()));
+    http.oauth2ResourceServer(oauth2 ->
+      oauth2.opaqueToken(Customizer.withDefaults())
+    );
 
     return http.build();
   }

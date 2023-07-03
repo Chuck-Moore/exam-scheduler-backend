@@ -19,20 +19,27 @@ class RepoConfig implements RepositoryRestConfigurer {
   }
 
   @Override
-  public void configureValidatingRepositoryEventListener(ValidatingRepositoryEventListener v) {
+  public void configureValidatingRepositoryEventListener(
+    ValidatingRepositoryEventListener v
+  ) {
     v.addValidator("beforeCreate", beanValidator);
     v.addValidator("beforeSave", beanValidator);
-    RepositoryRestConfigurer.super.configureValidatingRepositoryEventListener(v);
+    RepositoryRestConfigurer.super.configureValidatingRepositoryEventListener(
+      v
+    );
   }
 
   @Bean
   public RepositoryRestConfigurer repositoryRestConfigurer() {
-
     return new RepositoryRestConfigurer() {
-
       @Override
-      public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
-        config.setRepositoryDetectionStrategy(RepositoryDetectionStrategies.ANNOTATED);
+      public void configureRepositoryRestConfiguration(
+        RepositoryRestConfiguration config,
+        CorsRegistry cors
+      ) {
+        config.setRepositoryDetectionStrategy(
+          RepositoryDetectionStrategies.ANNOTATED
+        );
       }
     };
   }
