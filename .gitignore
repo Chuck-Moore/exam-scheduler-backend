@@ -4,6 +4,9 @@ build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+fic-scheduler-dev.lock.db
+fic-scheduler-dev.mv.db
+fic-scheduler-dev.trace.db
 
 ### STS ###
 .apt_generated
