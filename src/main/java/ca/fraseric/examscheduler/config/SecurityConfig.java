@@ -17,7 +17,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-@EnableWebMvc
 class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
