@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
                 // .allowedOrigins("http://localhost:5173")
                 // .allowedOriginPatterns("https://exam-scheduler-frontend-*-fire332.vercel.app/")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+                .allowedHeaders("*");
+                // .allowCredentials(true);
         }
 }
