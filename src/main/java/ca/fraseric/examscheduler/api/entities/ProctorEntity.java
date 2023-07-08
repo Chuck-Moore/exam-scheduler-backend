@@ -3,6 +3,7 @@ package ca.fraseric.examscheduler.api.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,13 +24,13 @@ public class ProctorEntity {
     @Setter(AccessLevel.NONE)
     private String proctorId;
     //private String priority;
-    @Column(nullable = false)
+    @NotNull
     @Temporal(TemporalType.DATE)
     private LocalDate date;
-    @Column(nullable = false)
+    @NotNull
     @Temporal(TemporalType.TIME)
     private LocalTime startTime;
-    @Column(nullable = false)
+    @NotNull
     @Temporal(TemporalType.TIME)
     private LocalTime endTime;
     @ManyToMany
