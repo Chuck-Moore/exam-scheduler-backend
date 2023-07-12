@@ -24,15 +24,15 @@ public class ExamEntity {
     @Setter(AccessLevel.NONE)
     private UUID examId;
     @NotBlank
-    @Column(unique = true)
+    @NotNull
     private String courseCode;
     @NotNull
     @Temporal(TemporalType.DATE)
     private LocalDate date; // how to set valid range, maybe within the term?
-    @Column(nullable = false)
+    @NotNull
     @Temporal(TemporalType.TIME)
     private LocalTime startTime;
-    @Column(nullable = false)
+    @NotNull
     @Temporal(TemporalType.TIME)
     private LocalTime endTime;
     @NotBlank
