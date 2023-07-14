@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.time.ZonedDateTime;
+import java.time.Duration;
 import java.util.List;
 import java.util.UUID;
 
@@ -26,15 +26,10 @@ public class ExamEntity {
     @NotBlank
     @Column(unique = true)
     private String courseCode;
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private LocalDate date; // how to set valid range, maybe within the term?
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
-    private LocalTime startTime;
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
-    private LocalTime endTime;
+    @NotBlank
+    private ZonedDateTime startDateTime;
+    @NotBlank
+    private Duration isoDuration;
     @NotBlank
     private String instructorId;
     @ElementCollection
