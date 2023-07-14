@@ -8,8 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 
 @jakarta.persistence.Entity
@@ -23,15 +21,10 @@ public class ProctorEntity {
     @Setter(AccessLevel.NONE)
     private String proctorId;
     //private String priority;
-    @Column(nullable = false)
-    @Temporal(TemporalType.DATE)
-    private LocalDate date;
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
-    private LocalTime startTime;
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIME)
-    private LocalTime endTime;
+    @ElementCollection
+    private List<TimeInterval> availableTimes;
     @ManyToMany
-    private List<ExamEntity> exams;
+    private List<ExamEntity> examsPending;
+    @ManyToMany
+    private List<ExamEntity> examsConfirmed;
 }

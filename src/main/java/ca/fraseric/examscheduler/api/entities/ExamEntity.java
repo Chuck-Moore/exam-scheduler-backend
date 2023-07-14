@@ -35,5 +35,7 @@ public class ExamEntity {
     @ElementCollection
     private List<String> location;
     @ManyToMany
-    private List<ProctorEntity> proctors;
+    private List<ProctorEntity> proctorsRequested;
+    @ManyToMany
+    private List<ProctorEntity> proctorsConfirmed;
 }
