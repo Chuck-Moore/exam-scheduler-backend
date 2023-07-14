@@ -3,6 +3,7 @@ package ca.fraseric.examscheduler.api.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,8 @@ public class RequestEntity {
   @Range(min = 1, max = 1000)
   private int studentCount;
   @NotNull
+  @OrderColumn
+  @Size(min = 3, max = 3)
   @ElementCollection
   private List<ZonedDateTime> isoDatePrefs;
   @NotNull
