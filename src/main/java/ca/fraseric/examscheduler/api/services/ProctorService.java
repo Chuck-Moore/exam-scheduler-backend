@@ -1,5 +1,7 @@
 package ca.fraseric.examscheduler.api.services;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +14,8 @@ public class ProctorService {
     @Autowired
     private ProctorRepository repo;
     
-    public ProctorEntity getProctorById(String id) {
-        return repo.findById(id).orElse(null);
+    public Optional<ProctorEntity> getProctorById(String id) {
+        return repo.findById(id);
     }
 
     public ProctorEntity saveProctor(ProctorEntity newProctor) {
