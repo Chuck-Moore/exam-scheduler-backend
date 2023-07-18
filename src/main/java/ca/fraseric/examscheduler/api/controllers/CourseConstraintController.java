@@ -45,7 +45,7 @@ public class CourseConstraintController {
 
     @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping("/courseConstraint")
+    @PostMapping(value = "/courseConstraint", params = "multiple")
     public List<CourseConstraintEntity> postCourseConstraintList(@RequestBody List<CourseConstraintEntity> newCourseConstraints, @RequestParam String multiple) {
         if(multiple == null || !multiple.equals("true")) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "multiple must be true");
@@ -69,7 +69,7 @@ public class CourseConstraintController {
 
     @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @DeleteMapping("/courseConstraint")
+    @DeleteMapping(value = "/courseConstraint", params = "constraintId")
     public void deleteCourseConstraintsByConstraitId(@RequestParam String constraintId) {
         repo.deleteByIdConstraintId(Long.parseLong(constraintId));
     }
