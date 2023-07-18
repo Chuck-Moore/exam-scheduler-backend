@@ -1,9 +1,9 @@
 package ca.fraseric.examscheduler.api.entities;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -17,6 +17,8 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CompositeCourseConstraintId implements Serializable{
-    private String courseId;
-    private UUID constraintId;
+    @NotNull
+    private String courseCode;
+    @NotNull
+    private long constraintId;
 }
