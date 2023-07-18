@@ -9,8 +9,12 @@ import lombok.Setter;
 
 import java.time.ZonedDateTime;
 import java.time.Duration;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @jakarta.persistence.Entity
 @Table(name = "Exam")
@@ -34,8 +38,10 @@ public class ExamEntity {
     private String instructorId;
     @ElementCollection
     private List<String> location;
-    @ManyToMany
-    private List<ProctorEntity> proctorsRequested;
-    @ManyToMany
-    private List<ProctorEntity> proctorsConfirmed;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"examsPending", "examsConfirmed"})
+    private Set<ProctorEntity> proctorsRequested = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"examsPending", "examsConfirmed"})
+    private Set<ProctorEntity> proctorsConfirmed = new HashSet<>();
 }

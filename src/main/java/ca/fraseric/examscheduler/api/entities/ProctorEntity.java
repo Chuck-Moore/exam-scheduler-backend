@@ -8,7 +8,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @jakarta.persistence.Entity
 @Table(name = "ProctorAvailability")
@@ -18,13 +22,15 @@ import java.util.List;
 public class ProctorEntity {
     @Id
     @NotBlank
-    @Setter(AccessLevel.NONE)
+    @Setter(AccessLevel.NONE) 
     private String proctorId;
     //private String priority;
     @ElementCollection
     private List<TimeInterval> availableTimes;
-    @ManyToMany
-    private List<ExamEntity> examsPending;
-    @ManyToMany
-    private List<ExamEntity> examsConfirmed;
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "proctorsRequested")
+    @JsonIgnoreProperties({"proctorsRequested", "proctorsConfirmed"})
+    private Set<ExamEntity> examsPending = new HashSet<>();
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "proctorsConfirmed")
+    @JsonIgnoreProperties({"proctorsRequested", "proctorsConfirmed"})
+    private Set<ExamEntity> examsConfirmed = new HashSet<>();
 }
