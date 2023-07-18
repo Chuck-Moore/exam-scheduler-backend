@@ -26,9 +26,9 @@ public class ExamEntity {
     @NotBlank
     @Column(unique = true)
     private String courseCode;
-    @NotBlank
+    @NotNull
     private ZonedDateTime startDateTime;
-    @NotBlank
+    @NotNull
     private Duration isoDuration;
     @NotBlank
     private String instructorId;

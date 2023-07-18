@@ -1,7 +1,8 @@
 package ca.fraseric.examscheduler.api.services;
 
 import java.util.UUID;
-
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +29,20 @@ public class ExamService {
         return repo.findByCourseCode(courseCode);
     }
 
+    public List<ExamEntity> getExamsByDate(LocalDate date) {
+        ZoneId zone = ZoneId.of("America/Vancouver");
+        return repo.findByStartDateTimeBetween(date.atStartOfDay(zone), date.plusDays(1).atStartOfDay(zone));
+    }
+
     public ExamEntity saveExam(ExamEntity newExam) {
         return repo.save(newExam);
     }
 
     public void deleteExamById(UUID id) {
         repo.deleteById(id);
+    }
+
+    public boolean existsById(UUID id) {
+        return repo.existsById(id);
     }
 }

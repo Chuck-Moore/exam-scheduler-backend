@@ -1,5 +1,6 @@
 package ca.fraseric.examscheduler.api.repositories;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -13,4 +14,5 @@ public interface ExamRepository extends JpaRepository<ExamEntity, UUID>{
 
     List<ExamEntity> findByCourseCode(String courseCode);
 
+    List<ExamEntity> findByStartDateTimeBetween(ZonedDateTime start, ZonedDateTime end);
 }
