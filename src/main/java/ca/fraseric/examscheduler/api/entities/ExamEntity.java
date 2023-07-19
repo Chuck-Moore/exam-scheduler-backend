@@ -36,8 +36,9 @@ public class ExamEntity {
     private Duration isoDuration;
     @NotBlank
     private String instructorId;
-    @ElementCollection
-    private List<String> location;
+    @ElementCollection(targetClass = Room.class)
+    @Enumerated(EnumType.STRING)
+    private List<Room> locations;
     @ManyToMany(cascade = CascadeType.ALL)
     @JsonIgnoreProperties({"examsPending", "examsConfirmed"})
     private Set<ProctorEntity> proctorsRequested = new HashSet<>();

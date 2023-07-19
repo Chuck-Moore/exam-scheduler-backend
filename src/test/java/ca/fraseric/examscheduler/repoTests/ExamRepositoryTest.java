@@ -13,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 import ca.fraseric.examscheduler.api.entities.ExamEntity;
+import ca.fraseric.examscheduler.api.entities.Room;
 import ca.fraseric.examscheduler.api.repositories.ExamRepository;
 
 @DataJpaTest
@@ -57,9 +58,9 @@ public class ExamRepositoryTest {
         exam.setCourseCode("CMPT276");
         exam.setStartDateTime(ZonedDateTime.parse("2020-12-01T08:00:00.000+00:00"));
         exam.setInstructorId("123456789");
-        List<String> location = new ArrayList<String>();
-        location.add("ABC123");
-        exam.setLocation(location);
+        List<Room> locations = new ArrayList<Room>();
+        locations.add(Room.DIS1_2020);
+        exam.setLocations(locations);
         exam.setIsoDuration(Duration.ofHours(1));
         return exam;
     }
@@ -69,9 +70,9 @@ public class ExamRepositoryTest {
         exam.setCourseCode("CMPT300");
         exam.setStartDateTime(ZonedDateTime.parse("2020-12-01T00:00:00.000+00:00"));
         exam.setInstructorId("123456789");
-        List<String> location = new ArrayList<String>();
-        location.add("ABC123");
-        exam.setLocation(location);
+        List<Room> locations = new ArrayList<Room>();
+        locations.add(Room.DIS1_2020);
+        exam.setLocations(locations);
         exam.setIsoDuration(Duration.ofHours(1));
         return exam;
     }
