@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 public class ProctorEntity {
     @Id
     @NotBlank
-    @Setter(AccessLevel.NONE) 
+    @Setter(AccessLevel.NONE)
     private String proctorId;
     //private String priority;
     @ElementCollection
