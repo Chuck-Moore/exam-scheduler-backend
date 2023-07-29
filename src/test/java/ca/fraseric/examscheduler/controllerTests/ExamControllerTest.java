@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
-
+import java.lang.reflect.Field;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.ZonedDateTime;
@@ -24,7 +24,7 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import ca.fraseric.examscheduler.api.controllers.ExamController;
 import ca.fraseric.examscheduler.api.entities.ExamEntity;
-import ca.fraseric.examscheduler.api.entities.Room;
+import ca.fraseric.examscheduler.api.entities.RoomEntity;
 import ca.fraseric.examscheduler.api.services.ExamService;
 
 @WebMvcTest(ExamController.class)
@@ -80,16 +80,22 @@ public class ExamControllerTest {
             .contentType(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk())
             .andExpect(jsonPath("$", hasSize(1)))
-            .andExpect(jsonPath("$[0].locations[0]", is("DIS1 2020")));
+            .andExpect(jsonPath("$[0].locations[0].roomName", is("DIS1 2020")));
     }
 
-    private ExamEntity createExam() {
+    private ExamEntity createExam() throws Exception {
         ExamEntity exam = new ExamEntity();
         exam.setCourseCode("CMPT276");
         exam.setStartDateTime(ZonedDateTime.parse("2020-12-01T08:00:00.000+00:00"));
         exam.setInstructorId("123456789");
-        List<Room> locations = new ArrayList<Room>();
-        locations.add(Room.DIS1_2020);
+
+        List<RoomEntity> locations = new ArrayList<RoomEntity>();
+        RoomEntity room = new RoomEntity();
+        Field field = room.getClass().getDeclaredField("roomName");
+        field.setAccessible(true);
+        field.set(room, "DIS1 2020");
+        room.setRoomType(RoomEntity.RoomType.STANDARD);
+        locations.add(room);
         exam.setLocations(locations);
         exam.setIsoDuration(Duration.ofHours(1));
         return exam;

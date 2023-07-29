@@ -36,13 +36,12 @@ public class ExamEntity {
     private Duration isoDuration;
     @NotBlank
     private String instructorId;
-    @ElementCollection(targetClass = Room.class)
-    @Enumerated(EnumType.STRING)
-    private List<Room> locations;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
+    private List<RoomEntity> locations;
+    @ManyToMany()
     @JsonIgnoreProperties({"examsPending", "examsConfirmed"})
     private Set<ProctorEntity> proctorsRequested = new HashSet<>();
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany()
     @JsonIgnoreProperties({"examsPending", "examsConfirmed"})
     private Set<ProctorEntity> proctorsConfirmed = new HashSet<>();
 }

@@ -3,7 +3,6 @@ package ca.fraseric.examscheduler.api.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,10 +26,10 @@ public class ProctorEntity {
     //private String priority;
     @ElementCollection
     private List<TimeInterval> availableTimes;
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "proctorsRequested")
+    @ManyToMany(mappedBy = "proctorsRequested")
     @JsonIgnoreProperties({"proctorsRequested", "proctorsConfirmed"})
     private Set<ExamEntity> examsPending = new HashSet<>();
-    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "proctorsConfirmed")
+    @ManyToMany(mappedBy = "proctorsConfirmed")
     @JsonIgnoreProperties({"proctorsRequested", "proctorsConfirmed"})
     private Set<ExamEntity> examsConfirmed = new HashSet<>();
 }

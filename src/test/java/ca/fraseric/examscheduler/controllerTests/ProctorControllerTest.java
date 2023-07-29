@@ -47,6 +47,7 @@ public class ProctorControllerTest {
             .getAvailableTimes().get(0).getStart().format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'"))));
     }
 
+
     private ProctorEntity createProctor() throws Exception{
         ProctorEntity proctor = new ProctorEntity();
         Field field = proctor.getClass().getDeclaredField("proctorId");
