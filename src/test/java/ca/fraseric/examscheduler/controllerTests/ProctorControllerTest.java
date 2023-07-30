@@ -1,6 +1,7 @@
 package ca.fraseric.examscheduler.controllerTests;
 
 import static org.mockito.BDDMockito.given;
+
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 

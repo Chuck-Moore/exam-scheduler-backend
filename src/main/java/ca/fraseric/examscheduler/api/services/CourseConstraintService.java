@@ -14,10 +14,36 @@ public class CourseConstraintService {
     @Autowired
     private CourseConstraintRepository repo;
 
-    public List<CourseConstraintEntity> getConstraintsByCourseId(String courseId) {
-        //TODO: implement
-        return null;
+    public List<CourseConstraintEntity> getAll() {
+        return repo.findAll();
     }
 
-    //TODO: implement other methods
+    public List<CourseConstraintEntity> getConstraintsByCourseCode(String courseCode) {
+        return repo.findByIdCourseCode(courseCode);
+    }
+
+    public List<CourseConstraintEntity> getConstraintsByConstraintId(long constraintId) {
+        return repo.findByIdConstraintId(constraintId);
+    }
+
+    public CourseConstraintEntity saveConstraint(CourseConstraintEntity newConstraint) {
+        return repo.save(newConstraint);
+    }
+
+    public List<CourseConstraintEntity> saveConstraintList(List<CourseConstraintEntity> constraintList) {
+        return repo.saveAll(constraintList);
+    }
+
+    public void deleteConstraint(CourseConstraintEntity constraint) {
+        repo.delete(constraint);
+    }
+
+    public void deleteByCourseCode(String courseCode) {
+        repo.deleteByIdCourseCode(courseCode);
+    }
+
+    public void deleteByConstraintId(long constraintId) {
+        repo.deleteByIdConstraintId(constraintId);
+    }
+
 }

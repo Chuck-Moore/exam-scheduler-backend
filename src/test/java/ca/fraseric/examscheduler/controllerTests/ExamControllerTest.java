@@ -97,6 +97,7 @@ public class ExamControllerTest {
         room.setRoomType(RoomEntity.RoomType.STANDARD);
         locations.add(room);
         exam.setLocations(locations);
+
         exam.setIsoDuration(Duration.ofHours(1));
         return exam;
     }
