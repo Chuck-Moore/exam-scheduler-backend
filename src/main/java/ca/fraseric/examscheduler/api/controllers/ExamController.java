@@ -32,8 +32,14 @@ public class ExamController {
 
     @Secured("ROLE_PROF")
     @GetMapping("/exams")
-    public List<ExamEntity> getAllExams(Authentication auth) {
+    public List<ExamEntity> getAllExamsProf(Authentication auth) {
         return service.getExamsByInstructorId(auth.getName());
+    }
+
+    @Secured("ROLE_ADMIN")
+    @GetMapping(value = "/exams" , params = "getAll")
+    public List<ExamEntity> getAllExams() {
+        return service.getAllExams();
     }
 
     @Secured("ROLE_ADMIN")

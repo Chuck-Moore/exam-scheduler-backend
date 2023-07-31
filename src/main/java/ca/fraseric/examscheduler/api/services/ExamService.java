@@ -17,6 +17,10 @@ public class ExamService {
     @Autowired
     private ExamRepository repo;
 
+    public List<ExamEntity> getAllExams() {
+        return repo.findAll();
+    }
+
     public ExamEntity getExamById(UUID id) {
         return repo.findById(id).orElse(null);
     }
