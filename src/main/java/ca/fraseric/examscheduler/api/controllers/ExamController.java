@@ -69,6 +69,13 @@ public class ExamController {
 
     @Secured("ROLE_ADMIN")
     @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping(value = "/exams", params = "generateSchedule")
+    public List<ExamEntity> generateSchedule() {
+        return service.buildSchedule();
+    }
+
+    @Secured("ROLE_ADMIN")
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/exams")
     public ExamEntity postExam(@RequestBody ExamEntity newExam) {
         return service.saveExam(newExam);

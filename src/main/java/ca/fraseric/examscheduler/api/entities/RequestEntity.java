@@ -34,7 +34,7 @@ public class RequestEntity {
   @NotNull
   @OrderColumn
   @Size(min = 3, max = 3)
-  @ElementCollection
+  @ElementCollection(fetch = FetchType.EAGER)
   private List<ZonedDateTime> isoDatePrefs;
   @NotNull
   private Duration isoDuration;

@@ -15,6 +15,10 @@ public class RequestService {
     @Autowired
     private RequestRepository repo;
 
+    public List<RequestEntity> getAll() {
+        return repo.findAll();
+    }
+
     public List<RequestEntity> getRequestsByInstructorId(String instructorId) {
         return repo.findByInstructorId(instructorId);
     }
