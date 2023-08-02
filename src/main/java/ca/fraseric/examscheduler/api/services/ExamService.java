@@ -69,7 +69,7 @@ public class ExamService {
 
     /**
      * Builds a schedule of exams based on the requests in the database.
-     * 
+     * Warning: this method will delete all exams in the database and replace them with the new schedule.
      * @return list of scheduled exams
      */
     @Scheduled(cron = "0 29 22 28 07 ?")
@@ -102,6 +102,7 @@ public class ExamService {
             }
         }
 
+        repo.deleteAll();
         examsScheduled.forEach(exam -> {
             this.saveExam(exam);
         });
