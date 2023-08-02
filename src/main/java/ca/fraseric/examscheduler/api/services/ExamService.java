@@ -139,10 +139,10 @@ public class ExamService {
 
         //Check if the request have any conflicts with the exams that have already been scheduled
         for (int num = 0; num < datePrefs.size(); num++) {
-            ZonedDateTime start = request.getIsoDatePrefs().get(num).minusMinutes(10);
+            ZonedDateTime start = datePrefs.get(num).minusMinutes(10);
             Duration duration = request.getIsoDuration().plusMinutes(20);
 
-            if (checkCourseConflict(request.getIsoDatePrefs().get(num), courses, examsScheduled)) {
+            if (checkCourseConflict(datePrefs.get(num), courses, examsScheduled)) {
                 continue;
             }
 
